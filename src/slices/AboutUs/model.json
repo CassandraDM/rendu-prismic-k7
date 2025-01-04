@@ -1,0 +1,35 @@
+{
+  "id": "about_us",
+  "type": "SharedSlice",
+  "name": "AboutUs",
+  "description": "AboutUs",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "about_title": {
+          "type": "Text",
+          "config": {
+            "label": "AboutTitle",
+            "placeholder": "About Title"
+          }
+        },
+        "about_content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "AboutContent",
+            "placeholder": "About Content",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

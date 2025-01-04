@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"about_title": {
+				"__TYPE__": "FieldContent",
+				"value": "mouse",
+				"type": "Text"
+			},
+			"about_content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Est anim ut reprehenderit dolore."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
