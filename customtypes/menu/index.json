@@ -1,0 +1,39 @@
+{
+  "format": "custom",
+  "id": "menu",
+  "label": "Menu",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "menuitems": {
+        "type": "Group",
+        "config": {
+          "label": "MenuItems",
+          "repeat": true,
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "Link",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

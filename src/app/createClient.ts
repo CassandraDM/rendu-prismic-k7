@@ -1,5 +1,5 @@
 import "./HomePage.css";
-import "./createClient";
+import { createClient } from "./prismicClient";
 import { Metadata } from "next";
 import { SliceZone } from "@prismicio/react";
 import * as prismic from "@prismicio/client";

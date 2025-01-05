@@ -4,6 +4,180 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type ArticlesDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Articles documents
+ */
+interface ArticlesDocumentData {
+  /**
+   * Title field in *Articles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Title
+   * - **API ID Path**: articles.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Author field in *Articles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Author
+   * - **API ID Path**: articles.author
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  author: prismic.KeyTextField;
+
+  /**
+   * Publication date field in *Articles*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: Publication date
+   * - **API ID Path**: articles.publication_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  publication_date: prismic.TimestampField;
+
+  /**
+   * Image field in *Articles*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: articles.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Content field in *Articles*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Content
+   * - **API ID Path**: articles.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *Articles*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: articles.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ArticlesDocumentDataSlicesSlice> /**
+   * Meta Title field in *Articles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: articles.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Articles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: articles.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Articles*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: articles.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Articles document from Prismic
+ *
+ * - **API ID**: `articles`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArticlesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ArticlesDocumentData>,
+    "articles",
+    Lang
+  >;
+
+/**
+ * Item in *Menu → MenuItems*
+ */
+export interface MenuDocumentDataMenuitemsItem {
+  /**
+   * Link field in *Menu → MenuItems*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link
+   * - **API ID Path**: menu.menuitems[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.Repeatable<prismic.LinkField>;
+}
+
+/**
+ * Content for Menu documents
+ */
+interface MenuDocumentData {
+  /**
+   * Logo field in *Menu*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * MenuItems field in *Menu*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.menuitems[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  menuitems: prismic.GroupField<Simplify<MenuDocumentDataMenuitemsItem>>;
+}
+
+/**
+ * Menu document from Prismic
+ *
+ * - **API ID**: `menu`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MenuDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
+
 type PageDocumentDataSlicesSlice =
   | TitleTextSlice
   | AboutUsSlice
@@ -79,7 +253,7 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = PageDocument;
+export type AllDocumentTypes = ArticlesDocument | MenuDocument | PageDocument;
 
 /**
  * Primary content in *AboutUs → Default → Primary*
@@ -247,6 +421,12 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      ArticlesDocument,
+      ArticlesDocumentData,
+      ArticlesDocumentDataSlicesSlice,
+      MenuDocument,
+      MenuDocumentData,
+      MenuDocumentDataMenuitemsItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,

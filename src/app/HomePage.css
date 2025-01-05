@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap");
+
+:root {
+  --orange-light: #f36d1e;
+  --orange-dark: #e95914;
+  --black: #181020;
+  --grey: #363f44;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  color: var(--black);
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--orange-light);
+  font-weight: 700;
+
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+p {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.container {
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.contact-form {
+  background-color: var(--light-grey);
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.contact-form h2 {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--orange-light);
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--black);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+button[type="submit"] {
+  background-color: var(--orange-light);
+  color: var(--light-grey);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: "Noto Sans", sans-serif;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--orange-dark);
+}
